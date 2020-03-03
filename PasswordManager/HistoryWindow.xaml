@@ -1,0 +1,53 @@
+﻿<Window x:Class="PasswordManager.HistoryWindow"
+
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PasswordManager"
+        xmlns:props="clr-namespace:PasswordManager.Properties"
+            
+      mc:Ignorable="d"
+        Title="Cards" Height="400" Width="600" Loaded="Window_Loaded" FontFamily="Comfortaa">
+    <Window.Resources>
+        <Style TargetType="Button">
+            <Setter Property="Margin" Value="20 8 20 8" />
+            <Setter Property="Width" Value="80" />
+            <Setter Property="Height" Value="30" />
+        </Style>
+    </Window.Resources>
+    <Window.Background>
+        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+            <GradientStop Color="#FFBEA1FD" Offset="0"/>
+            <GradientStop Color="#FFBEA1FD" Offset="1"/>
+        </LinearGradientBrush>
+    </Window.Background>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="13*" />
+            <RowDefinition Height="161*"/>
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <DataGrid AutoGenerateColumns="False" x:Name="cardsGrid" Margin="0,0,0,46" Grid.RowSpan="3" BorderBrush="{x:Null}" Foreground="Black" FontFamily="Arial Black" FontSize="16">
+            <DataGrid.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="Black" Offset="1"/>
+                    <GradientStop Color="White"/>
+                </LinearGradientBrush>
+            </DataGrid.Background>
+            <DataGrid.Columns >
+                <DataGridTextColumn Binding="{Binding card}" Header="Карта" Width="120" />
+                <DataGridTextColumn Binding="{Binding pin}" Header="Пин-код" Width="125"/>
+                <DataGridTextColumn Binding="{Binding ivc}" Header="IVC" Width="80"/>
+                <DataGridTextColumn Binding="{Binding Username}" Header="User" Width="100"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <StackPanel HorizontalAlignment="Left"  Grid.Row="2" Orientation="Horizontal" Margin="0,0,-0.4,0.4" Width="594" Background="Black">
+            <Button x:Name="updateButton" Content="Add" Click="updateButton_Click" FontFamily="Britannic Bold" BorderBrush="White" Foreground="#FFFFF6F6" Margin="20,8,20,0" VerticalAlignment="Top" Background="Black" FontSize="16" />
+            <Button x:Name="deleteButton" Content="Delete" Click="deleteButton_Click" Margin="20,8,20,8.4" FontFamily="Britannic Bold" BorderBrush="White" Foreground="#FFFFF6F6" Background="Black" FontSize="16" />
+            <Button  Content="{x:Static props:Resources.CMD_CLOSE}"  Click="ButtonCancel_Click"  BorderBrush="White" Foreground="#FFFFF6F6" FontFamily="Britannic Bold"  Margin="20,8,20,8.4" RenderTransformOrigin="-0.01,0.567" Height="Auto" Background="Black" FontSize="16"  />
+        </StackPanel>
+    </Grid>
+</Window>
